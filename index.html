@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Retro Radio Time Machine — tune a hyper-realistic 1990s boombox built with 2026 web tech."
+    />
+    <title>Retro Radio Time Machine — Tune the Dial. Travel Through Time.</title>
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <div class="wallpaper" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <h1 class="site-title">Retro Radio Time Machine</h1>
+      <p class="site-tagline">Tune the dial. Travel through time. Feel the bass.</p>
+    </header>
+
+    <main id="radio-app" class="radio-scene" role="application" aria-label="Retro Radio Time Machine boombox">
+      <div id="boombox" class="boombox powered-off">
+
+        <!-- Antenna -->
+        <div id="antenna" class="antenna" role="button" tabindex="0" aria-label="Extend radio antenna">
+          <div class="antenna-segment antenna-base"></div>
+          <div class="antenna-segment antenna-mid"></div>
+          <div class="antenna-segment antenna-tip"></div>
+        </div>
+
+        <!-- Handle -->
+        <div class="handle" aria-hidden="true"></div>
+
+        <div class="boombox-inner">
+          <!-- Left speaker -->
+          <div class="speaker-column">
+            <div class="speaker-grill speaker-left" aria-hidden="true">
+              <div class="grill-lines"></div>
+              <div class="grill-cone"></div>
+            </div>
+          </div>
+
+          <!-- Center panel -->
+          <div class="center-panel">
+            <!-- Brand + power -->
+            <div class="panel-top">
+              <span class="brand-badge">SONY-STYLE XK-9000</span>
+              <button
+                id="power-btn"
+                class="power-btn"
+                type="button"
+                aria-pressed="false"
+                aria-label="Power on or off"
+              >
+                <span class="power-icon"></span>
+                <span class="power-label">PWR</span>
+              </button>
+            </div>
+
+            <!-- LED display -->
+            <div class="display-bezel" aria-live="polite">
+              <div class="led-display">
+                <div class="display-row">
+                  <span class="display-label">FM</span>
+                  <span id="freq-display" class="freq-readout">91.7</span>
+                  <span class="display-unit">MHz</span>
+                </div>
+                <div id="station-label" class="station-readout">PRESS POWER</div>
+                <div id="news-ticker" class="news-ticker" aria-live="polite"></div>
+              </div>
+              <div class="display-reflection" aria-hidden="true"></div>
+            </div>
+
+            <!-- Signal + battery -->
+            <div class="meters-row">
+              <div class="meter signal-meter-wrap">
+                <span class="meter-label">SIGNAL</span>
+                <div id="signal-meter" class="meter-bar" role="meter" aria-label="Signal strength">
+                  <div id="signal-fill" class="meter-fill signal-fill"></div>
+                </div>
+              </div>
+              <div class="meter battery-meter-wrap">
+                <span class="meter-label">BATT</span>
+                <div class="meter-bar battery-bar" role="meter" aria-label="Battery level">
+                  <div id="battery-fill" class="meter-fill battery-fill"></div>
+                </div>
+                <span id="battery-pct" class="battery-pct">100%</span>
+              </div>
+            </div>
+
+            <!-- Knobs -->
+            <div class="knobs-row">
+              <div class="knob-group">
+                <div
+                  id="tune-knob"
+                  class="knob tune-knob"
+                  aria-label="Tuning dial"
+                >
+                  <div class="knob-ring"></div>
+                  <div class="knob-dial">
+                    <span class="knob-indicator"></span>
+                  </div>
+                </div>
+                <span class="knob-label">TUNING</span>
+              </div>
+              <div class="knob-group">
+                <div
+                  id="volume-knob"
+                  class="knob volume-knob"
+                  aria-label="Volume control"
+                >
+                  <div class="knob-ring"></div>
+                  <div class="knob-dial">
+                    <span class="knob-indicator"></span>
+                  </div>
+                </div>
+                <span class="knob-label">VOLUME</span>
+              </div>
+            </div>
+
+            <!-- Cassette deck -->
+            <div class="cassette-deck">
+              <div class="deck-label">DUAL CASSETTE DECK</div>
+              <div id="cassette" class="cassette" aria-label="Cassette player">
+                <div class="cassette-window">
+                  <div class="cassette-label">CHROME TYPE IV — 90 MIN</div>
+                  <div class="reels">
+                    <div id="reel-left" class="reel reel-left"></div>
+                    <div id="reel-right" class="reel reel-right"></div>
+                  </div>
+                  <div class="tape-strip"></div>
+                </div>
+              </div>
+              <div class="deck-controls">
+                <button id="record-btn" class="deck-btn record-btn" type="button" aria-label="Record voice memo">
+                  <span class="deck-btn-icon">●</span> REC
+                </button>
+                <span id="record-led" class="record-led" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <!-- Presets -->
+            <div class="presets-row" role="group" aria-label="Station presets">
+              <span class="presets-label">PRESETS</span>
+              <div class="preset-buttons">
+                <button class="preset-btn" data-preset="1" type="button" aria-label="Preset 1, 90s Pop Hits">1</button>
+                <button class="preset-btn" data-preset="2" type="button" aria-label="Preset 2, Classic Rock">2</button>
+                <button class="preset-btn" data-preset="3" type="button" aria-label="Preset 3, Hip-Hop">3</button>
+                <button class="preset-btn" data-preset="4" type="button" aria-label="Preset 4, Talk Radio">4</button>
+                <button class="preset-btn" data-preset="5" type="button" aria-label="Preset 5, Weather News">5</button>
+                <button class="preset-btn" data-preset="6" type="button" aria-label="Preset 6, Future FM 2026">6</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right speaker -->
+          <div class="speaker-column">
+            <div class="speaker-grill speaker-right" aria-hidden="true">
+              <div class="grill-lines"></div>
+              <div class="grill-cone"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom chrome strip -->
+        <div class="chrome-strip" aria-hidden="true"></div>
+      </div>
+    </main>
+
+    <!-- Future FM 2026 secret modal -->
+    <div id="future-modal" class="future-modal" hidden aria-hidden="true" role="dialog" aria-labelledby="future-title">
+      <div class="future-modal-inner">
+        <h2 id="future-title">📡 FUTURE FM 2026</h2>
+        <p class="future-subtitle">AI Music Recommender — scanning your nostalgia frequency...</p>
+        <ul id="future-recs" class="future-rec-list"></ul>
+        <button id="future-close" class="future-close-btn" type="button">Return to 1999</button>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with Web Audio API · Vite · Tailwind CSS · Pure nostalgia</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

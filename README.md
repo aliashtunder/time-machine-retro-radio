@@ -172,3 +172,20 @@ MIT — go wild with the nostalgia.
 ---
 
 *Built with maximum 1990s boombox energy. Powered by 2026 web skills.*
+
+## Deployment Notes
+
+Quick deployment hints for each platform:
+
+- **GitHub Pages**: This repo builds to `docs/` when not on a root host. Use `yarn build` locally (or CI) which will emit `docs/` and set the base path to `/time-machine-retro-radio/`. In GitHub Pages settings choose the `main` branch `docs/` folder as the source, or let the repo push the `docs/` folder to `main` and serve from there.
+
+- **Netlify**: Configure the site to run `yarn build` and publish the `dist/` folder. The project detects `process.env.NETLIFY` in `vite.config.js` and will build with `base: '/'` and `outDir: 'dist'`. If you use the GitHub Action I added, set the repository Secrets `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` so the workflow can deploy.
+
+- **Vercel**: Use `yarn build` and publish the `dist/` directory. Vercel provides `VERCEL` in the environment and `vite.config.js` detects this to emit root-based asset paths. If you see a white page, make sure the latest commit (which detects Vercel) is deployed and that the build finished successfully.
+
+CI notes
+
+- The project requires Node 20+ for some Tailwind dependencies. The Netlify deploy workflow in `.github/workflows/netlify-deploy.yml` has been updated to use Node 20. If you run into `The engine "node" is incompatible` errors in CI, ensure the runner uses Node 20.
+- Avoid mixing npm/Yarn lockfiles. Remove `package-lock.json` if you prefer Yarn only, or add a CI step to remove it before `yarn install` to avoid warnings.
+
+If you'd like, I can add a small `netlify.toml` (redirects/headers) or a Vercel configuration file to pin build settings. Want me to add one of those? 

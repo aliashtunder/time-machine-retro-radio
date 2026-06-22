@@ -29,7 +29,23 @@ npm run build    # production build → dist/
 npm run preview  # preview production build
 ```
 
-Deploy `dist/` to **Vercel** or **Netlify** — zero config needed.
+Deploy to **GitHub Pages** (recommended) or **Vercel** / **Netlify**.
+
+## Deploy to GitHub Pages
+
+Live URL (after setup): **https://aliashtunder.github.io/retro-radio/**
+
+1. Push this repo to [github.com/aliashtunder/retro-radio](https://github.com/aliashtunder/retro-radio)
+2. On GitHub, go to **Settings → Pages**
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**
+4. Push to `main` — the workflow in `.github/workflows/deploy.yml` builds and deploys automatically
+
+To preview the production build locally (with the correct `/retro-radio/` base path):
+
+```bash
+npm run build
+npm run preview
+```
 
 ## Folder Structure
 

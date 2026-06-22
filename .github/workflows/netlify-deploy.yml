@@ -1,0 +1,37 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        # Ensure vite detects Netlify builds and emits a root-based build into `dist/`.
+        env:
+          NETLIFY: 'true'
+        run: yarn build
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          # Install the Netlify CLI and deploy the `dist/` folder to your site.
+          # Requires two repository Secrets set: NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID.
+          npx netlify-cli@latest deploy --prod --dir=dist --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
